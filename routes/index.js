@@ -31,14 +31,14 @@ router.get('/find', async function(req, res){
 // //gte : greater than equal and lte : less than equal
 // let king = await userModel.find({datecreated: {$gte: date1, $lte: date2}}); //it will find the data between specific dates.
 
-let king = await userModel.find({
-  $expr: {
-     $and: [
-      {$gte: [{$strLenCP: "$nickname"}, 0]},
-      {$lte: [{$strLenCP: "$nickname"}, 146]}
-     ]
-  }
-})
+// let king = await userModel.find({
+//   $expr: {
+//      $and: [
+//       {$gte: [{$strLenCP: "$nickname"}, 0]},
+//       {$lte: [{$strLenCP: "$nickname"}, 146]}  //it will print all the data in which nickname length is between 0 and 146.
+//      ]
+//   }
+// })
 
   res.send(king);
 })
