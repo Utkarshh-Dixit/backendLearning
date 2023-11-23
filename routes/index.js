@@ -26,10 +26,19 @@ router.get('/find', async function(req, res){
   // let king = await userModel.find({categories: {$all: ['java', 'css']}}); //it will return all the users data which has java and css as categories.   
 
 
-var date1 = new Date("2023-11-21");
-var date2 = new Date("2023-11-23");
-//gte : greater than equal and lte : less than equal
-let king = await userModel.find({datecreated: {$gte: date1, $lte: date2}}); //it will find the data between specific dates.
+// var date1 = new Date("2023-11-21");
+// var date2 = new Date("2023-11-23");
+// //gte : greater than equal and lte : less than equal
+// let king = await userModel.find({datecreated: {$gte: date1, $lte: date2}}); //it will find the data between specific dates.
+
+let king = await userModel.find({
+  $expr: {
+     $and: [
+      {$gte: [{$strLenCP: "$nickname"}, 0]},
+      {$lte: [{$strLenCP: "$nickname"}, 146]}
+     ]
+  }
+})
 
   res.send(king);
 })
