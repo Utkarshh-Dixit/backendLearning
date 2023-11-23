@@ -9,8 +9,8 @@ router.get('/', function(req, res){
 
 // router.get('/create', async function(req, res){
 //   const createdUser = await userModel.create({
-//     username: "Kush",
-//     nickname: "Rinku",
+//     username: "AinUtkarsh",
+//     nickname: "Any",
 //     description: "Not interested in coding and an unlimited studious person",
 //     categories: ['css', 'java']
 //   });
@@ -19,10 +19,17 @@ router.get('/', function(req, res){
 
 router.get('/find', async function(req, res){
   
-  let temp = new RegExp("uTkArsh", 'i'); //it will make the search insensitive
-  let king = await userModel.find({username: temp});  //it is case sensitive.
+  // let temp = new RegExp("uTkArsh", 'i'); //it will make the search insensitive
+
+  // let temp = new RegExp("^utkarsh$", 'i');
+  // let king = await userModel.find({username: temp});  //it is case sensitive.
+  // let king = await userModel.find({categories: {$all: ['java', 'css']}}); //it will return all the users data which has java and css as categories.   
 
 
+var date1 = new Date("2023-11-21");
+var date2 = new Date("2023-11-23");
+//gte : greater than equal and lte : less than equal
+let king = await userModel.find({datecreated: {$gte: date1, $lte: date2}}); //it will find the data between specific dates.
 
   res.send(king);
 })
