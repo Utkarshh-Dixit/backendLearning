@@ -18,7 +18,11 @@ router.get('/', function(req, res){
 // })
 
 router.get('/find', async function(req, res){
-  let king = await userModel.find({username: "utkarsh"});
+  
+  let temp = new RegExp("uTkArsh", 'i'); //it will make the search insensitive
+  let king = await userModel.find({username: temp});  //it is case sensitive.
+
+
 
   res.send(king);
 })
